@@ -1,19 +1,16 @@
 import logging
-
 from flask import Blueprint, render_template, redirect, url_for, flash, current_app, abort
 from flask_login import login_user, login_required, logout_user, current_user
 from jinja2 import TemplateNotFound
-from sqlalchemy import select
 from werkzeug.security import generate_password_hash
 
 from app.auth.decorators import admin_required
 from app.auth.forms import login_form, register_form, profile_form, security_form, user_edit_form, create_user_form
 from app.db import db
-from app.db.models import User, Location, location_user
+from app.db.models import User, Transaction
 from flask_mail import Message
 
 auth = Blueprint('auth', __name__, template_folder='templates')
-
 
 @auth.route('/register', methods=['POST', 'GET'])
 def register():
@@ -76,25 +73,13 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
-
-
-
-
 @auth.route('/dashboard', methods=['GET'], defaults={"page": 1})
 @auth.route('/dashboard/<int:page>', methods=['GET'])
 @login_required
 def dashboard(page):
     page = page
-    per_page = 1000
-    #pagination = Location.query.filter_by(users=current_user.id).paginate(page, per_page, error_out=False)
-    #pagination = Location.query.all(users=current_user.id).paginate(page, per_page, error_out=False)
 
-    #pagination = db.session.query(Location, User).filter(location_user.location_id == Location.id,
-            #                                   location_user.user_id == User.id).order_by(Location.location_id).all()
-
-    #pagination = User.query.join(location_user).filter(location_user.user_id == current_user.id).paginate()
-
-    data = current_user.locations
+    data = current_user.transactions
 
     try:
         return render_template('dashboard.html',data=data)
@@ -141,9 +126,7 @@ def browse_users():
     edit_url = ('auth.edit_user', [('user_id', ':id')])
     add_url = url_for('auth.add_user')
     delete_url = ('auth.delete_user', [('user_id', ':id')])
-
     current_app.logger.info("Browse page loading")
-
     return render_template('browse.html', titles=titles, add_url=add_url, edit_url=edit_url, delete_url=delete_url,
                            retrieve_url=retrieve_url, data=data, User=User, record_type="Users")
 

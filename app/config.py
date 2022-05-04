@@ -11,7 +11,6 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(BASE_DIR,'..', DB_DIR, "db2.sqlite")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOAD_FOLDER =  os.getenv('UPLOAD_FOLDER', os.path.join(BASE_DIR,'..' , 'uploads'))
-    GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY','NOKEY')
     LOG_DIR =  os.path.join(BASE_DIR, '../logs')
     MAIL_SERVER = os.getenv('MAIL_SERVER','smtp.mailtrap.io')
     MAIL_PORT = 2525
@@ -21,10 +20,8 @@ class Config(object):
     MAIL_USE_SSL = False
     MAIL_DEFAULT_SENDER = os.getenv('MAIL_DEFAULT_SENDER','noreply@myapp.com')
 
-
 class ProductionConfig(Config):
     pass
-
 
 class DevelopmentConfig(Config):
     DEBUG = True

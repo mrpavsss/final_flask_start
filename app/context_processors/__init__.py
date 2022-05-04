@@ -2,7 +2,6 @@ from os import getenv
 import datetime
 from app.auth.forms import login_form
 
-
 def utility_text_processors():
     message = "Hello World"
     form = login_form()

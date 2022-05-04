@@ -4,11 +4,18 @@ import os
 
 from click.testing import CliRunner
 
-from app import create_database
+from app.cli import create_database, create_logs
 
 runner = CliRunner()
 
-
+def test_create_logs():
+    """logs"""
+    response = runner.invoke(create_logs)
+    assert response.exit_code == 0
+    root = os.path.dirname(os.path.abspath(__file__))
+    logdir = os.path.join(root, '../logs')
+    response = os.path.exists(logdir)
+    assert response is True
 
 
 def test_create_database():
