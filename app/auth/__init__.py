@@ -2,6 +2,7 @@ import logging
 from flask import Blueprint, render_template, redirect, url_for, flash, current_app, abort
 from flask_login import login_user, login_required, logout_user, current_user
 from jinja2 import TemplateNotFound
+from sqlalchemy import select
 from werkzeug.security import generate_password_hash
 
 from app.auth.decorators import admin_required
@@ -28,12 +29,12 @@ def register():
                 db.session.add(user)
                 db.session.commit()
 
-            msg = Message("Welcome to the site",
-                          sender="from@example.com",
-                          recipients=[user.email])
-            msg.body = "Welcome to the site"
-
-            current_app.mail.send(msg)
+            # msg = Message("Welcome to the site",
+            #               sender="from@example.com",
+            #               recipients=[user.email])
+            # msg.body = "Welcome to the site"
+            #
+            # current_app.mail.send(msg)
             flash('Congratulations, you are now a registered user!', "success")
 
             return redirect(url_for('auth.login'), 302)
@@ -79,7 +80,7 @@ def logout():
 def dashboard(page):
     page = page
 
-    data = current_user.transactions
+    data = current_user.locations
 
     try:
         return render_template('dashboard.html',data=data)

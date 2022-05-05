@@ -40,7 +40,7 @@ def transactions_upload():
         with open(filepath) as file:
             csv_file = csv.DictReader(file)
             for row in csv_file:
-                transaction_individual = Transaction.query.filter_by(AMOUNT=row['AMOUNT']).first()
+                transaction_individual = Transaction.query.filter_by(title=row['Name'])
                 if transaction_individual is None:
                     current_user.transactions.append(Transaction(row['AMOUNT'],row['TYPE']))
                     db.session.commit()
