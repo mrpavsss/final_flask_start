@@ -40,16 +40,10 @@ def transactions_upload():
         with open(filepath) as file:
             csv_file = csv.DictReader(file)
             for row in csv_file:
-                transaction_individual = Transaction.query.filter_by(title=row['Name'])
-                if transaction_individual is None:
-                    current_user.transactions.append(Transaction(row['AMOUNT'],row['TYPE']))
-                    db.session.commit()
-                else:
-                    current_user.transactions.append(transaction_individual)
-                    db.session.commit()
+                list_of_transactions.append(Transaction(row['\ufeffAMOUNT'], row['TYPE']))
+                current_user.balance += float(row['\ufeffAMOUNT'])
 
-
-        current_user.transactions = list_of_transactions
+        current_user.transactions += list_of_transactions
         db.session.commit()
 
         return redirect(url_for('transactions.transactions_browse'))

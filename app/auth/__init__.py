@@ -80,7 +80,7 @@ def logout():
 def dashboard(page):
     page = page
 
-    data = current_user.locations
+    data = Transaction.query.filter_by(user_id=current_user.id)
 
     try:
         return render_template('dashboard.html',data=data)

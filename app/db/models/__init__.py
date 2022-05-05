@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask_login import UserMixin
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy_serializer import SerializerMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db import db
@@ -15,12 +15,14 @@ transaction_user = db.Table('transaction_user', db.Model.metadata,
 class Transaction(db.Model,SerializerMixin):
     __tablename__ = 'transactions'
     id = db.Column(db.Integer, primary_key=True)
-    AMOUNT = db.Column(db.FLOAT(), nullable=False, unique=False)
-    TYPE = db.Column(db.String(6), nullable=False, unique=False)
+    amount = db.Column(db.FLOAT(), nullable=False, unique=False)
+    type = db.Column(db.String(6), nullable=False, unique=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = relationship("User", back_populates="transactions", uselist=False)
 
-    def __init__(self, AMOUNT, TYPE):
-        self.AMOUNT = AMOUNT
-        self.TYPE = TYPE
+    def __init__(self, amount, type):
+        self.amount = amount
+        self.type = type
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -34,6 +36,8 @@ class User(UserMixin, db.Model):
     is_admin = db.Column('is_admin', db.Boolean(), nullable=False, server_default='0')
     locations = db.relationship("Transaction",
                     secondary=transaction_user, backref="users")
+    transactions = db.relationship("Transaction", back_populates="user", cascade="all, delete")
+    balance = db.Column(db.Float, nullable=True, unique=False, default="0.00")
 
     def __init__(self, email, password, is_admin):
         self.email = email
