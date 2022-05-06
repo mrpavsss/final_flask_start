@@ -25,7 +25,7 @@ class Transaction(db.Model,SerializerMixin):
         self.type = type
 
 class User(UserMixin, db.Model):
-    __tablename__ = 'users'
+    __tablename__ : str = 'users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(300), nullable=False)
@@ -34,8 +34,6 @@ class User(UserMixin, db.Model):
     registered_on = db.Column('registered_on', db.DateTime)
     active = db.Column('is_active', db.Boolean(), nullable=False, server_default='1')
     is_admin = db.Column('is_admin', db.Boolean(), nullable=False, server_default='0')
-    locations = db.relationship("Transaction",
-                    secondary=transaction_user, backref="users")
     transactions = db.relationship("Transaction", back_populates="user", cascade="all, delete")
     balance = db.Column(db.Float, nullable=True, unique=False, default="0.00")
 

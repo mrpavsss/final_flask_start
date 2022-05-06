@@ -5,7 +5,8 @@ import logging
 from app import db
 from app.db.models import User, Transaction
 
-def test_adding_user(application, client):
+def test_adding_user(application):
+    """this works"""
     log = logging.getLogger("myApp")
     with application.app_context():
         assert db.session.query(User).count() == 0
