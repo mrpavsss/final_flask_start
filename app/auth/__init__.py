@@ -1,4 +1,6 @@
 import logging
+import sqlite3
+
 from flask import Blueprint, render_template, redirect, url_for, flash, current_app, abort
 from flask_login import login_user, login_required, logout_user, current_user
 from jinja2 import TemplateNotFound
@@ -81,9 +83,13 @@ def dashboard(page):
     page = page
 
     data = Transaction.query.filter_by(user_id=current_user.id)
+    c = sqlite3.connect('database/db2.sqlite')
+    cur = c.cursor()
+    cur.execute("SELECT * from transactions ")
+    test = cur.fetchall()
 
     try:
-        return render_template('dashboard.html', data=data)
+        return render_template('dashboard.html', test=test)
     except TemplateNotFound:
         abort(404)
 

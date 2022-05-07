@@ -3,11 +3,11 @@
 {% from "bootstrap5/pagination.html" import render_pagination %}
 
 <div class="row col-8">
-    {% block title %}Welcome to Pavs bank: {{ current_user.email }}{% endblock %}
+    {% block title %}Welcome to Pavsss bank: {{ current_user.email }}{% endblock %}
     {% block content %}
         <h2>Welcome: {{ current_user.email }}</h2>
         {{ format_price(current_user.balance)}}
-        {{ render_table(data) }}
+        {{ render_table(test) }}
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
