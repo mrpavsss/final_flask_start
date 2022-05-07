@@ -83,7 +83,7 @@ def dashboard(page):
     data = Transaction.query.filter_by(user_id=current_user.id)
 
     try:
-        return render_template('dashboard.html')
+        return render_template('dashboard.html', data=data)
     except TemplateNotFound:
         abort(404)
 
