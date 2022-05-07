@@ -13,7 +13,7 @@ transaction_user = db.Table('transaction_user', db.Model.metadata,
 )
 
 class Transaction(db.Model,SerializerMixin):
-    __tablename__ = 'transactions'
+    __tablename__ : str = 'transactions'
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.FLOAT(), nullable=False, unique=False)
     type = db.Column(db.String(6), nullable=False, unique=False)

@@ -29,12 +29,12 @@ def register():
                 db.session.add(user)
                 db.session.commit()
 
-            # msg = Message("Welcome to the site",
-            #               sender="from@example.com",
-            #               recipients=[user.email])
-            # msg.body = "Welcome to the site"
-            #
-            # current_app.mail.send(msg)
+            msg = Message("Welcome to the site",
+                           sender="from@example.com",
+                           recipients=[user.email])
+            msg.body = "Welcome to the site"
+
+            current_app.mail.send(msg)
             flash('Congratulations, you are now a registered user!', "success")
 
             return redirect(url_for('auth.login'), 302)

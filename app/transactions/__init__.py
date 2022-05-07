@@ -41,7 +41,7 @@ def transactions_upload():
             csv_file = csv.DictReader(file)
             for row in csv_file:
                 list_of_transactions.append(Transaction(row['\ufeffAMOUNT'], row['TYPE']))
-                #current_user.balance += float(row['\ufeffAMOUNT'])
+                current_user.balance += float(row['\ufeffAMOUNT'])
 
         current_user.transactions += list_of_transactions
         db.session.commit()
