@@ -7,11 +7,6 @@ from app.db import db
 
 Base = declarative_base()
 
-transaction_user = db.Table('transaction_user', db.Model.metadata,
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
-    db.Column('transaction_id', db.Integer, db.ForeignKey('transactions.id'))
-)
-
 class Transaction(db.Model,SerializerMixin):
     __tablename__ : str = 'transactions'
     id = db.Column(db.Integer, primary_key=True)
