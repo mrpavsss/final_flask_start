@@ -17,7 +17,7 @@ log_con = flask.Blueprint('log_con', __name__)
 def before_request_logging():
     current_app.logger.info("Before Request")
     log = logging.getLogger("myApp")
-    log.info(f"My App Logger activated at {datetime.datetime.now()}")
+    log.info(f"Pavsss Bank Logger activated at {datetime.datetime.now()}")
 
 
 
@@ -32,7 +32,7 @@ def after_request_logging(response):
 
     current_app.logger.info("After Request")
     log = logging.getLogger("myApp")
-    log.info(f"My App Logger activated at {datetime.datetime.now()}")
+    log.info(f"Pavsss Bank Logger activated at {datetime.datetime.now()}")
 
     log = logging.getLogger("request")
     log.info(f"My Request Logger activated at {datetime.datetime.now()}")
@@ -47,7 +47,7 @@ def after_request_logging(response):
 # def configure_logging():
 #     logging.config.dictConfig(LOGGING_CONFIG)
 #     log = logging.getLogger("myApp")
-#     log.info("My App Logger")
+#     log.info("Pavsss Bank Logger")
 #
 #     log = logging.getLogger("myerrors")
 #     log.error("This broke")
@@ -68,7 +68,7 @@ def setup_logs():
 
 
     log = logging.getLogger("myApp")
-    log.info("My App Logger")
+    log.info("Pavsss Bank Logger")
 
     current_app.logger.info("myerrors logger is activated")
     log = logging.getLogger("myerrors")
