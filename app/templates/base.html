@@ -9,6 +9,8 @@
         {% block styles %}
             <!-- Bootstrap CSS -->
             {{ bootstrap.load_css() }}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/z-style.css') }}"/>
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/nicepage.css') }}"/>
         {% endblock %}
 
         <title>Pavsss Bank - {% block title %}{% endblock %}</title>
@@ -32,6 +34,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <img class="u-image u-image-default u-preserve-proportions u-image-2" src="../static/images/153996582-0.png" alt="" data-image-width="50" data-image-height="50">
                     <div class="navbar-nav mr-auto">
                         {% if current_user.is_authenticated %}
                             {{ render_nav_item('auth.dashboard','Dashboard' ) }}
@@ -40,6 +43,47 @@
                         {% endif %}
                         {{ render_nav_item('simple_pages.about','About') }}
                         {{ render_nav_item('simple_pages.welcome','Welcome') }}
+                        <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Programming Foundations
+                            </a>
+
+                            <ul class="dropdown-menu " aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for("simple_pages.show", page="Git")}}">Git </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for("simple_pages.show", page="docker")}}">Docker </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for("simple_pages.show", page="python-flask")}}">Python/Flask </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for("simple_pages.show", page="integrate-deploy")}}">Integrate & Deploy</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for("simple_pages.show", page="Pylint")}}">Pylint </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for("simple_pages.show", page="AAA-Testing")}}">Triple A</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for("simple_pages.show", page="OOPs")}}">OOPs </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for("simple_pages.show", page="SOLID")}}">SOLID </a>
+                                </li>
+
+                            </ul>
+                        </li>
                     </div>
                 </div>
                 <div class="navbar-nav d-flex">

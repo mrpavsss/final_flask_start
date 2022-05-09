@@ -1,6 +1,35 @@
 {% extends "base.html" %}
-<article>{% block content %}
-    <h1>About</h1>
-    {{ lipsum (n=5, html=True, min=20, max=100) }}
+{% block content %}
+    <!DOCTYPE html>
+<html lang="en">
+ <head>
+ <meta charset="UTF-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link
+ href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+ rel="stylesheet"
+ />
+     <link rel="stylesheet" href="../../static/css/About.css" />
+     <link rel="stylesheet" href="../../static/css/nicepage.css" />
+
+ </head>
+  <body class="u-body u-xl-mode">
+    <section class="u-align-left u-clearfix u-image u-section-1" id="sec-09c1" data-image-width="1920" data-image-height="1080">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-group u-white u-group-1">
+          <div class="u-container-layout u-valign-top u-container-layout-1">
+            <h2 class="u-text u-text-default u-text-1">About Me:</h2>
+            <p class="u-text u-text-2">My name is Pavly Rizk. I am a software developer in the making! I focus on all things stack. My emphasis is full stack, as I have experience in both front and back end development. At this time, I am pursuing my bachelor's degree in Computer Science at NJIT. I am planning on graduating in 2023 and beginning my career in developing software, the likes of which this world has never seen.<br>Interested to see some of my work? Click below!
+            </p>
+            <a href="https://github.com/mrpavsss" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-1" target="_blank">My Repositories</a>
+          </div>
+        </div>
+        <img class="u-image u-image-default u-image-1" src="../../static/images/20200208_2159381.jpg" alt="" data-image-width="862" data-image-height="646">
+      </div>
+    </section>
+  </body>
+</html>
 {% endblock %}
-</article>
