@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <article class="col-8 lh-lg fs-5">
+
+            <h1>Hello!!</h1>
+            <h3>Welcome to PAVSSS BANK! Hooray! You are now our highest priority.</h3>
+            <p>Here some things to do while here:</p>
+            <p> 1. Register with us.</p>
+            <p> 2. Withdraw and deposit when you would like to under transaction mgmt.</p>
+            <p> 3. Check your balance and recent transations under dashboard.</p>
+            <p> 4. Get a glimpse of a programming welcome in the welcome page.</p>
+            <p> 5. Learn about fundamental knowledge to programming uder programming foundations.</p>
+            <p> 6. And learn about our CEO who put brought us all here, Pavly Rizk, in the about page.</p>
+            <h4>We hope you choose to bank with us. Let us know if you need any help.</h4>
+        </article>
+        {% if current_user.is_authenticated == false %}
+            <aside class="col-4">
+                <h2>Login</h2>
+                <form action="{{ url_for('auth.login') }}" method=post>
+                    <dl>
+                        {{ form.csrf_token }}
+                        {{ render_field(form.email) }}
+                        {{ render_field(form.password) }}
+                    </dl>
+                    <p><input type=submit value=Login>
+                </form>
+            </aside>
+        {% endif %}
+
+    </div>
+{% endblock %}
+</article>
